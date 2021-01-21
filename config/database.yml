@@ -1,7 +1,10 @@
 development:
   prepared_statements: false
   adapter: postgresql
-  database: <%= ENV['DISCOURSE_DEV_DB'] || 'discourse_development' %>
+  database: <%= ENV['DISCOURSE_DEV_DB'] || 'discourse' %>
+  username: postgres
+  password: postgres
+  host: postgres
   min_messages: warning
   pool: 5
   timeout: 5000

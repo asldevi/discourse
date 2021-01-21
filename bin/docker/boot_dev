@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 SCRIPTPATH=$(cd "$(dirname "$0")" > /dev/null; pwd -P)
 SOURCE_DIR=$(cd "$SCRIPTPATH" > /dev/null; cd ../.. > /dev/null; pwd -P)
