@@ -1,11 +1,12 @@
 development:
   prepared_statements: false
   adapter: postgresql
-  database: <%= ENV['DISCOURSE_DEV_DB'] || 'discourse' %>
-  username: postgres
-  password: postgres
-  host: postgres
-  min_messages: warning
+  database: <%= ENV['DISCOURSE_DB_NAME'] || 'discourse' %>
+  username: <%= ENV['DISCOURSE_DB_USERNAME'] || 'discourse' %>
+  password: <%= ENV['DISCOURSE_DB_PASSWORD'] || 'discourse' %>
+  host: <%= ENV['DISCOURSE_DB_HOST'] || '' %>
+
+  # min_messages: warning
   pool: 5
   timeout: 5000
   checkout_timeout: <%= ENV['CHECKOUT_TIMEOUT'] || 5 %>

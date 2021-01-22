@@ -12,16 +12,20 @@ services:
   redis:
     image: 'redis:alpine'
     volumes:
-      - redis:/data    
+      - redis:/data
 
   discourse:
     container_name: discourse_dev
     build: .
-    # image: discourse/discourse_dev:release
-    # volumes:
-    #   - '.:/src'
     environment:
       - UNICORN_BIND_ALL=true
+      - DISCOURSE_DB_USERNAME=postgres
+      - DISCOURSE_DB_PASSWORD=postgres
+      - DISCOURSE_DB_NAME=discourse
+      - DISCOURSE_DB_HOST=postgres
+      - DISCOURSE_REDIS_HOST=redis
+    volumes:
+      - ./config/database.yml:/src/config/database.yml
 
     depends_on:
       - postgres
@@ -32,15 +36,8 @@ services:
       - '3001:3000'
       - '9292:9292'
       - '9405:9405'
-    # command: /sbin/boot
 
 volumes:
   pgdata:
   redis:
 
-  # "${SCRIPTPATH}/rake" db:migrate part from boot_dev
-  # discourse-migrate:
-  #   build: .
-  #   command: USER=discourse RUBY_GLOBAL_METHOD_CACHE_SIZE=131072 bundle exec rake db:migrate
-
-  
